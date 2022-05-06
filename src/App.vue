@@ -1,15 +1,33 @@
 <template>
-  <base-comp />
+  <h1>Todotask Web</h1>
+  <nav-comp />
+  <router-view />
 </template>
 
 <script>
-import BaseComp from "./components/BaseComp.vue";
-
+import NavComp from "./components/NavComp.vue";
 export default {
   name: "App",
 
-  components: {
-    BaseComp,
-  },
+  components: { NavComp },
 };
 </script>
+
+<style>
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(146, 250, 255),
+    rgb(174, 255, 246)
+  );
+}
+
+h1 {
+  text-align: center;
+  font-weight: 700;
+}
+
+* {
+  text-align: center;
+}
+</style>

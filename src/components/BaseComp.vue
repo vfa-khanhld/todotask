@@ -1,21 +1,22 @@
 <template>
-  <h1>Todotask Web</h1>
-  <todo-comp />
+  <todotask />
+  <create />
 </template>
 
-<style>
-h1 {
-  text-align: center;
-}
-</style>
-
 <script>
-import TodoComp from "./TodoComp.vue";
+import Todotask from "./TodoComp.vue";
+import Create from "./CreateComp.vue";
 
 export default {
-  name: "HelloWorld",
   components: {
-    TodoComp,
+    Todotask,
+    Create,
   },
 };
 </script>
+
+<style scoped>
+* {
+  text-align: center;
+}
+</style>
