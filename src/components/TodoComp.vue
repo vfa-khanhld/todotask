@@ -1,24 +1,46 @@
 <template>
   <div class="wrapper">
-    <div class="todoListName">
-      <div class="name">Công Việc</div>
-      <div class="status">Trạng Thái</div>
-      <div class="time">Thời Gian</div>
-    </div>
-    <div class="todoList" v-for="(todo, index) in todoList" :key="index">
-      <input
-        type="checkbox"
-        v-model="todo.isDone"
-        @click="todo.isDone = !todo.isDone"
-        :value="todo.title"
-      />
-      <span>{{ todo.title }}</span>
-      <span class="done" v-if="todo.isDone">Hoàn Thành</span>
-      <span class="notDone" v-else>Chưa Hoàn Thành</span>
-      <span>{{ todo.dayStart }} - {{ todo.dayDone }}</span>
-      <button>Edit</button>
-      <button>Delete</button>
-    </div>
+    <table class="tableContent">
+      <col style="width: 10%" />
+      <tr class="spacer">
+        <th></th>
+        <th><div class="name">Công Việc</div></th>
+        <th><div class="cate">Loại</div></th>
+        <th><div class="status">Trạng Thái</div></th>
+        <th><div class="time">Thời Gian</div></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr
+        class="todoList spacer"
+        v-for="(todo, index) in todoList"
+        :key="index"
+      >
+        <td>
+          <input
+            type="checkbox"
+            v-model="todo.isDone"
+            @click="todo.isDone = !todo.isDone"
+            :value="todo.title"
+          />
+        </td>
+        <td>
+          <span>{{ todo.title }}</span>
+        </td>
+        <td>
+          <span>{{ todo.cate }}</span>
+        </td>
+        <td>
+          <span class="done" v-if="todo.isDone">Hoàn Thành</span>
+          <span class="notDone" v-else>Chưa Hoàn Thành</span>
+        </td>
+        <td>
+          <span>{{ todo.dayStart }} - {{ todo.dayDone }}</span>
+        </td>
+        <td><button class="btn btn-warning">Edit</button></td>
+        <td><button class="btn btn-danger">Delete</button></td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -37,6 +59,11 @@ export default {
 </script>
 
 <style scoped>
+table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
 button {
   margin: 0 5px;
   margin-left: 14px;
@@ -49,30 +76,19 @@ span {
   margin-top: 15px;
 }
 
-.name {
-  flex: 2;
-  margin-left: 20px;
-}
-.status {
-  flex: 3;
-  margin-left: 15px;
-}
-.time {
-  flex: 6;
-  text-align: left;
-  margin-left: 130px;
-}
-
 input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  border-radius: 6px;
-  margin-top: 22px;
+  margin: 8px 0;
+}
+
+.tableContent {
+  margin: 0 auto;
 }
 
 .wrapper {
   background: white;
-  width: 1000px;
+  width: 1120px;
   margin: 20px auto;
   padding: 30px 30px;
   border: solid 3px rgb(192, 191, 191);
@@ -88,8 +104,7 @@ input[type="checkbox"] {
 
 .todoList {
   text-align: center;
-  display: flex;
-  margin: 0 46px;
+  margin: 10px 46px;
 }
 
 .done {

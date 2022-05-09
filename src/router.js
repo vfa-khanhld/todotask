@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import BaseComp from "./components/BaseComp.vue";
 import Search from "./components/SearchComp.vue";
-import Add from "./components/CreateComp.vue"
+import Add from "./components/AddComp.vue"
 
 const routes = [{
         path: "/",
