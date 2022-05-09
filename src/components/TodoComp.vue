@@ -16,6 +16,8 @@
       <span class="done" v-if="todo.isDone">Hoàn Thành</span>
       <span class="notDone" v-else>Chưa Hoàn Thành</span>
       <span>{{ todo.dayStart }} - {{ todo.dayDone }}</span>
+      <button>Edit</button>
+      <button>Delete</button>
     </div>
   </div>
 </template>
@@ -35,6 +37,12 @@ export default {
 </script>
 
 <style scoped>
+button {
+  margin: 0 5px;
+  margin-left: 14px;
+  width: 80px;
+}
+
 span {
   margin-left: 20px;
   font-size: 22px;
@@ -43,12 +51,16 @@ span {
 
 .name {
   flex: 2;
+  margin-left: 20px;
 }
 .status {
   flex: 3;
+  margin-left: 15px;
 }
 .time {
-  flex: 4;
+  flex: 6;
+  text-align: left;
+  margin-left: 130px;
 }
 
 input[type="checkbox"] {
@@ -60,7 +72,7 @@ input[type="checkbox"] {
 
 .wrapper {
   background: white;
-  width: 800px;
+  width: 1000px;
   margin: 20px auto;
   padding: 30px 30px;
   border: solid 3px rgb(192, 191, 191);

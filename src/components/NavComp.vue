@@ -2,7 +2,7 @@
   <nav class="nav">
     <router-link class="router-link" to="/">Dashboard</router-link>
     <router-link class="router-link" to="/search">Search</router-link>
-    <router-link class="router-link" to="/add">CRUD</router-link>
+    <router-link class="router-link" to="/add">Add</router-link>
   </nav>
 </template>
 

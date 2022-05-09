@@ -32,8 +32,14 @@ export default createStore({
             todoListFiltered: [],
         };
     },
-    getters: {},
+    getters: {
+        allTodos: (state) => state.todoList,
+    },
+    actions: {
+        addTodo({ commit }, todo) {
+            commit('add', todo);
+        }
+    },
     mutations: {},
-    actions: {},
     modules: {},
 });
