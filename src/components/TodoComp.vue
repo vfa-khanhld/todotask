@@ -25,20 +25,32 @@
           />
         </td>
         <td>
-          <span>{{ todo.title }}</span>
+          <span class="titleName">{{ todo.title }}</span>
         </td>
         <td>
-          <span>{{ todo.cate }}</span>
+          <span>{{ todo.category.name }}</span>
         </td>
         <td>
-          <span class="done" v-if="todo.isDone">Hoàn Thành</span>
-          <span class="notDone" v-else>Chưa Hoàn Thành</span>
+          <span class="done pd-20" v-if="todo.isDone">Hoàn Thành</span>
+          <span class="notDone pd-20" v-else>Chưa Hoàn Thành</span>
         </td>
         <td>
-          <span>{{ todo.dayStart }} - {{ todo.dayDone }}</span>
+          <span>{{ todo.dayStart }} </span>
+          <span>{{ todo.dayDone }}</span>
         </td>
-        <td><button class="btn btn-warning">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td>
+          <router-link
+            :value="todo.id"
+            class="btn btn-warning btn-add"
+            :to="{ name: 'edit-by-id', params: { id: todo.id } }"
+            >Edit</router-link
+          >
+        </td>
+        <td>
+          <button @click="deleteTodo(todo.id)" class="btn btn-danger">
+            Delete
+          </button>
+        </td>
       </tr>
     </table>
   </div>
@@ -46,19 +58,31 @@
 
 <script>
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { mapActions, useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
     const todoList = computed(() => store.state.todoList);
+    const cate = computed(() => store.state.cate);
 
-    return { todoList };
+    return { cate, todoList };
   },
   components: {},
+  methods: {
+    ...mapActions(["deleteTodo"]),
+  },
 };
 </script>
 
 <style scoped>
+.btn-add {
+  margin-left: 20px;
+}
+
+.pd-20 {
+  padding: 0 20px;
+}
+
 table {
   border-collapse: separate;
   border-spacing: 0 1em;
@@ -100,6 +124,10 @@ input[type="checkbox"] {
   font-size: 20px;
   margin: 14px 0;
   font-weight: 700;
+}
+
+.titleName {
+  word-break: break-all;
 }
 
 .todoList {

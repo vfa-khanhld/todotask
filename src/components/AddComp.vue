@@ -5,66 +5,98 @@
       class="addInputTerm"
       type="text"
       placeholder="Tên Task"
-      v-bind="todoText"
-      @change="todoTextChange"
+      v-model="todoText.title"
     />
-    <input
+    <!-- <input
       class="addInputTerm"
       type="text"
       placeholder="Loại Task"
-      v-bind="todoText"
-    />
+      v-model="todoText.cate"
+    /> -->
+    <select class="addInputTerm" v-model="selectedCate">
+      <!-- <option selected value="1">Front-End</option>
+      <option value="2">Back-End</option> -->
+      <option
+        v-for="(category, index) in cate"
+        :key="index"
+        :value="{ name: category.name, value: category.value }"
+      >
+        {{ category.name }}
+      </option>
+    </select>
+    {{ selectedCate }}
     <input
       class="addInputTerm"
       type="text"
       placeholder="Ngày Bắt Đầu"
-      v-bind="todoText"
+      v-model="todoText.dayStart"
     />
     <input
       class="addInputTerm"
       type="text"
       placeholder="Ngày Kết Thúc"
-      v-bind="todoText"
+      v-model="todoText.dayDone"
     />
-    <button class="btn btn-success" @click="addTodo1">Thêm Task</button>
+    <button class="btn btn-success" @click="addTodo1(todoText)">
+      Add Task
+    </button>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import { computed } from "vue";
+import { useStore } from "vuex";
 export default {
   data() {
     return {
       todoText: {
+        id: length + 1,
         title: "Title",
         isDone: false,
-        cate: "Front-End",
+        category: {
+          name: "Front-End",
+          value: 1,
+        },
         dayStart: "06/05/2022",
         dayDone: "27/05/2022",
       },
+      selectedCate: Object(),
     };
   },
   methods: {
     ...mapActions(["addTodo"]),
-    todoTextChange(e) {
-      this.todoText = e.target.value;
-    },
     addTodo1() {
       this.addTodo({
+        id: length + 1,
         title: this.todoText.title,
-        cate: this.todoText.cate,
+        category: {
+          name: this.selectedCate.name,
+          value: this.selectedCate.value,
+        },
         dayStart: this.todoText.dayStart,
         dayDone: this.todoText.dayDone,
       });
-      this.todoText = "";
-      // {
-      //   title: "",
-      //   isDone: false,
-      //   cate: "",
-      //   dayStart: "",
-      //   dayDone: "",
-      // };
+      this.todoText = {
+        id: "",
+        title: "Title",
+        isDone: false,
+        category: {
+          name: "Front-End",
+          value: 1,
+        },
+        dayStart: "06/05/2022",
+        dayDone: "27/05/2022",
+      };
     },
+  },
+  setup() {
+    const store = useStore();
+    const todoList = computed(() => store.state.todoList);
+    const cate = computed(() => store.state.cate);
+    const length = computed(() => store.state.todoList.length());
+    console.log(todoList);
+    return { cate, todoList, length };
   },
 };
 </script>

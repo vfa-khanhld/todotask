@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import BaseComp from "./components/BaseComp.vue";
 import Search from "./components/SearchComp.vue";
 import Add from "./components/AddComp.vue"
+import Edit from "./components/EditComp.vue"
 
 const routes = [{
         path: "/",
@@ -15,6 +16,11 @@ const routes = [{
     {
         path: "/add",
         component: Add,
+    },
+    {
+        path: "/edit/:id",
+        name: "edit-by-id",
+        component: Edit,
     },
 ];
 

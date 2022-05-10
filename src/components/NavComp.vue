@@ -23,6 +23,7 @@
   font-size: 30px;
   font-weight: 700;
   text-transform: uppercase;
+  flex: 1;
 }
 .router-link:hover {
   color: rgb(73, 73, 198);

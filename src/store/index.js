@@ -5,35 +5,59 @@ export default createStore({
     state() {
         return {
             todoList: [{
+                    id: 1,
                     title: "Todo 1",
                     isDone: false,
-                    cate: "Front-End",
+                    category: {
+                        name: "Front-End",
+                        value: 1,
+                    },
                     dayStart: "06/05/2022",
                     dayDone: "27/05/2022",
                 },
                 {
+                    id: 2,
                     title: "Todo 2",
                     isDone: false,
-                    cate: "Back-End",
+                    category: {
+                        name: "Back-End",
+                        value: 2,
+                    },
                     dayStart: "06/05/2022",
                     dayDone: "27/05/2022",
                 },
                 {
+                    id: 3,
                     title: "Todo 3",
                     isDone: false,
-                    cate: "Back-End",
+                    category: {
+                        name: "Back-End",
+                        value: 2,
+                    },
                     dayStart: "06/05/2022",
                     dayDone: "27/05/2022",
                 },
                 {
+                    id: 4,
                     title: "Todo 4",
                     isDone: false,
-                    cate: "Front-End",
+                    category: {
+                        name: "Front-End",
+                        value: 1,
+                    },
                     dayStart: "06/05/2022",
                     dayDone: "27/05/2022",
                 },
             ],
-            todoListFiltered: [],
+            cate: [{
+                    name: "Front-End",
+                    value: 1,
+                },
+                {
+                    name: "Back-End",
+                    value: 2,
+                },
+            ],
         };
     },
     getters: {
@@ -43,12 +67,18 @@ export default createStore({
         addTodo({ commit }, todo) {
             commit("add", todo);
         },
+        deleteTodo({ commit }, todo) {
+            commit("deleteTodo", todo)
+        }
     },
     mutations: {
         add(state, todo) {
             state.todoList.push(todo);
-            console.log(todo)
+            console.log(todo);
         },
+        deleteTodo(state, id) {
+            state.todoList = state.todoList.filter((todo) => todo.id != id);
+        }
     },
     modules: {},
 });
