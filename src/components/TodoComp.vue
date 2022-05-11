@@ -64,7 +64,6 @@ export default {
     const store = useStore();
     const todoList = computed(() => store.state.todoList);
     const cate = computed(() => store.state.cate);
-
     return { cate, todoList };
   },
   components: {},

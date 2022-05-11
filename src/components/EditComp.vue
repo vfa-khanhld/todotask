@@ -1,6 +1,7 @@
 <template>
   <div class="addInput">
     <input class="addInputTerm" type="text" placeholder="" />
+    <h1>{{ getId }}</h1>
     <select class="addInputTerm" v-model="selectedCate">
       <option
         v-for="(category, index) in cate"
@@ -21,24 +22,18 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 export default {
   data() {
-    return {
-      selectedCate: {},
-    };
+    return { selectedCate: Object() };
   },
   setup() {
     const store = useStore();
     const todoList = computed(() => store.state.todoList);
     const cate = computed(() => store.state.cate);
-
+    console.log(window.location.search);
     return { cate, todoList };
   },
-  getters: {
-    getById: (state) =>
-      state.todoList.filter((todo) => (todo.id = state.todoList.id)),
-  },
+  props: ["getId"],
 };
 </script>
-
 <style scoped>
 .addInput {
   width: 100%;
